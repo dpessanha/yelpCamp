@@ -1,11 +1,14 @@
 <%- include('../partials/header') %>
-
-<body>
+<%- include('../partials/nav') %>
+<Main>
   <div class="container">
     <h1><%= campground.title %> </h1>
     <ul>
       <li>Location: <%= campground.location %> </li>
     </ul>
+    <a href="/campgrounds/<%= campground._id %>/edit " class="btn btn-warning">Edit Campground</a>
+    <a href="/campgrounds" class="btn btn-primary">Back to Campgrounds List</a>
   </div>
+</Main>
 
-  <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>
