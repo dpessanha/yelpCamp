@@ -7,6 +7,12 @@
       <li>Location: <%= campground.location %> </li>
     </ul>
     <a href="/campgrounds/<%= campground._id %>/edit " class="btn btn-warning">Edit Campground</a>
+    <br>
+    <br>
+    <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+      <button class="btn btn-danger">Delete Campground</button>
+    </form>
+    <br>
     <a href="/campgrounds" class="btn btn-primary">Back to Campgrounds List</a>
   </div>
 </Main>
