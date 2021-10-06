@@ -20,11 +20,25 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get('/mkcampground', async (req, res) => {
-  const camp = new Campground({ title: 'My Backyard', price: '15.99', location: 'My Home', description: 'Cheap camp!' })
-  await camp.save()
-  res.send(camp)
+// =====================
+//   INDEX ROUTE
+// =====================  
+app.get('/campgrounds', async (req, res) => {
+  const campgrounds = await Campground.find({})
+  res.render('campgrounds/index', { title: 'Campgrounds', campgrounds })
 })
+
+// =====================
+//   DETAILS ROUTE
+// =====================  
+app.get('/campgrounds/:id', async (req, res) => {
+  const { id } = req.params
+  const campground = await Campground.findById(id)
+  res.render('campgrounds/details', { title: `${campground.title}`, campground })
+})
+
+
+
 
 app.listen(3000, () => {
   console.log('Server running at port 3000.');
