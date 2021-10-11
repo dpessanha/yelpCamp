@@ -9,10 +9,17 @@
   <title><%= title %> </title>
 </head>
 
-<body>
-  <Main class="container">
+<body class="d-flex flex-column vh-100">
+  <Header class="sticky-top">
+    <%- include('../partials/navbar') %>
+  </Header>
+  <Main class="container mt-5">
     <%- body %>
   </Main>
+  <Footer class="mt-auto">
+    <%- include('../partials/footer') %>
+  </Footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
