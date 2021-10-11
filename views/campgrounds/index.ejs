@@ -1,16 +1,10 @@
-<%- include('../partials/header') %>
-<%- include('../partials/nav') %>
+<% layout('layouts/boilerplate') %>
 
-<Main>
-  <div class="container">
-    <h1>All Campgrounds</h1>
-    <ul>
-      <% for(let campground of campgrounds){ %>
-      <li><a href="/campgrounds/<%= campground._id %>"><%= campground.title %></a></li>
-      <% } %>
-    </ul>
-  </div>
-</Main>
-
-
-<%- include('../partials/footer.ejs') %>
+<div class="container">
+  <h1>All Campgrounds</h1>
+  <ul>
+    <% for(let campground of campgrounds){ %>
+    <li><a href="/campgrounds/<%= campground._id %>"><%= campground.title %></a></li>
+    <% } %>
+  </ul>
+</div>
