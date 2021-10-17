@@ -4,6 +4,7 @@ const ejsMate = require('ejs-mate')
 const override = require('method-override')
 const Campground = require('./models/campground')
 const mongoose = require('mongoose')
+const ExpressError = require('./utils/ExpressError')
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -80,6 +81,11 @@ app.delete('/campgrounds/:id', async (req, res) => {
   const { id } = req.params
   const campground = await Campground.findByIdAndDelete(id)
   res.redirect('/campgrounds')
+})
+
+// Error handling
+app.use((err, req, res, next)=> {
+  res.send(`There is an error in the request.`)
 })
 
 /////////// Server Start
