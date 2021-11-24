@@ -1,46 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+      integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7"
+      crossorigin="anonymous"
+    />
+    <title><%= title %></title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <title><%= title %> </title>
-</head>
+  <body class="d-flex flex-column vh-100">
+    <Header class="sticky-top"> <%- include('../partials/navbar') %> </Header>
+    <Main class="container mt-5"> <%- body %> </Main>
+    <Footer class="mt-auto"> <%- include('../partials/footer') %> </Footer>
 
-<body class="d-flex flex-column vh-100">
-  <Header class="sticky-top">
-    <%- include('../partials/navbar') %>
-  </Header>
-  <Main class="container mt-5">
-    <%- body %>
-  </Main>
-  <Footer class="mt-auto">
-    <%- include('../partials/footer') %>
-  </Footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      ;(function () {
+        'use strict'
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script>
-    (function() {
-      'use strict'
+        //Fetch all the forms we want to apply custom Bootstrap validations styles to
+        const forms = document.querySelectorAll('.validated-form')
 
-      //Fetch all the forms we want to apply custom Bootstrap validations styles to
-      const forms = document.querySelectorAll('.validated-form')
-
-      //Loop over them and prevent submission
-      Array.from(forms)
-        .forEach(function(form) {
-          form.addEventListener('submit', function(e) {
-            if (!form.checkValidity()) {
-              e.preventDefault()
-              e.stopPropagation()
-            }
-            form.classList.add('was-validated')
-          }, false)
+        //Loop over them and prevent submission
+        Array.from(forms).forEach(function (form) {
+          form.addEventListener(
+            'submit',
+            function (e) {
+              if (!form.checkValidity()) {
+                e.preventDefault()
+                e.stopPropagation()
+              }
+              form.classList.add('was-validated')
+            },
+            false
+          )
         })
-    })()
-  </script>
-</body>
-
+      })()
+    </script>
+  </body>
 </html>
