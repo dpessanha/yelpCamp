@@ -2,11 +2,22 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
+const session = require('express-session')
 const ExpressError = require('./utils/ExpressError')
 const override = require('method-override')
 const host = '127.0.0.1'
 const campgrounds = require('./routes/campgrounds')
 const reviews = require('./routes/reviews')
+const sessionConfig = {
+  secret: 'abacaxi',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 3,
+    maxAge: 1000 * 60 * 60 * 24 * 3,
+  },
+}
 
 mongoose.connect(`mongodb://${host}:27017/yelp-camp`, {
   useNewUrlParser: true,
@@ -29,6 +40,7 @@ app.use(override('_method'))
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id/reviews', reviews)
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(session(sessionConfig))
 
 // =====================
 //   LANDING PAGE ROUTE
