@@ -21,7 +21,9 @@
 
   <body class="d-flex flex-column vh-100">
     <Header class="sticky-top"> <%- include('../partials/navbar') %> </Header>
-    <Main class="container mt-5"> <%- body %> </Main>
+    <Main class="container mt-5">
+      <%- include('../partials/flash') %> <%- body %>
+    </Main>
     <Footer class="mt-auto"> <%- include('../partials/footer') %> </Footer>
 
     <script src="/JS/bootstrap.js"></script>
