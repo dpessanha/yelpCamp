@@ -34,6 +34,7 @@ router.post(
     campground.reviews.push(newReview)
     await newReview.save()
     await campground.save()
+    req.flash('success', 'Review created!')
     res.redirect(`/campgrounds/${campground._id}`)
   })
 )
@@ -45,6 +46,7 @@ router.delete(
     const { id, reviewId } = req.params
     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)
+    req.flash('success', 'Review deleted.')
     res.redirect(`/campgrounds/${id}`)
   })
 )

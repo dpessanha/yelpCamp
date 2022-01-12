@@ -58,7 +58,10 @@ router.get(
     const campground = await Campground.findById(req.params.id).populate(
       'reviews'
     )
-    console.log(campground)
+    if (!campground) {
+      req.flash('error', 'Campground not found.')
+      return res.redirect('/campgrounds')
+    }
     res.render('campgrounds/details', {
       title: `YelpCamp | ${campground.title}`,
       campground,
@@ -72,6 +75,10 @@ router.get(
   catchAsync(async (req, res) => {
     const { id } = req.params
     const campground = await Campground.findById(id)
+    if (!campground) {
+      req.flash('error', 'Campground not found.')
+      return res.redirect('/campgrounds')
+    }
     res.render('campgrounds/edit', {
       title: `YelpCamp | Edit ${campground.title}`,
       campground,
@@ -86,6 +93,7 @@ router.put(
     const campground = await Campground.findByIdAndUpdate(id, {
       ...req.body.campground,
     })
+    req.flash('success', 'Successfully upgraded campground.')
     res.redirect(`/campgrounds/${campground._id}`)
   })
 )
